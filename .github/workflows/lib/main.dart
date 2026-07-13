@@ -28,7 +28,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final _userController = TextEditingController();
   final _passController = TextEditingController();
 
-  // 👥 30 PERSONELİN GİRİŞ LİSTESİ
   final Map<String, String> _personelListesi = {
     'admin': 'sincan123',
     'serkantekbas': 'sincan06', 'fatihceylan': 'sincan06', 'muhammetduran': 'sincan06',
@@ -38,10 +37,6 @@ class _LoginScreenState extends State<LoginScreen> {
     'turgutaydogdu': 'sincan06', 'memiseren': 'sincan06', 'omerfarukarslanturk': 'sincan06',
     'yunusemreacisu': 'sincan06', 'hasanhilmiergul': 'sincan06', 'semsettinceylan': 'sincan06',
     'ismetaltunay': 'sincan06', 'ahmetkaracam': 'sincan06',
-    'personel21': 'sincan06', 'personel22': 'sincan06', 'personel23': 'sincan06',
-    'personel24': 'sincan06', 'personel25': 'sincan06', 'personel26': 'sincan06',
-    'personel27': 'sicnan06', 'personel28': 'sincan06', 'personel29': 'sincan06',
-    'personel30': 'sincan06',
   };
 
   void _login() {
@@ -107,41 +102,11 @@ class MainScreen extends StatelessWidget {
               decoration: const BoxDecoration(color: Color(0xFF005EA6)),
               child: Text('Sincan Belediyesi\nKullanıcı: ${username.toUpperCase()}', style: const TextStyle(color: Colors.white, fontSize: 18)),
             ),
-            ListTile(
-              leading: const Icon(Icons.play_arrow, color: Colors.green), 
-              title: const Text('İşe Başlama (GPRS + Selfie)'),
-              onTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('İşe Başlama Başarılı! Konum ve Kamera Aktif.'), backgroundColor: Colors.green));
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.date_range, color: Colors.blue), 
-              title: const Text('Mazeret İzin Talebi'),
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const MazeretScreen()));
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.message, color: Colors.purple), 
-              title: const Text('Yetkiliye Mesaj (Sohbet)'),
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const ChatScreen()));
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.assignment, color: Colors.teal), 
-              title: const Text('Görev Listesi'),
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const TasksScreen()));
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.stop, color: Colors.red), 
-              title: const Text('İş Bitiş (GPRS + Selfie)'),
-              onTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Mesai Bitirildi! Çıkış Saati Kaydedildi.'), backgroundColor: Colors.red));
-              },
-            ),
+            const ListTile(leading: Icon(Icons.play_arrow, color: Colors.green), title: Text('İşe Başlama (GPRS + Selfie)')),
+            const ListTile(leading: Icon(Icons.date_range, color: Colors.blue), title: Text('Mazeret İzin Talebi')),
+            const ListTile(leading: Icon(Icons.message, color: Colors.purple), title: Text('Yetkiliye Mesaj (Sohbet)')),
+            const ListTile(leading: Icon(Icons.assignment, color: Colors.teal), title: Text('Görev Listesi')),
+            const ListTile(leading: Icon(Icons.stop, color: Colors.red), title: Text('İş Bitiş (GPRS + Selfie)')),
           ],
         ),
       ),
@@ -150,77 +115,6 @@ class MainScreen extends StatelessWidget {
   }
 }
 
-class MazeretScreen extends StatelessWidget {
-  const MazeretScreen({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Mazeret İzin Formu'), backgroundColor: const Color(0xFF005EA6), iconTheme: const IconThemeData(color: Colors.white)),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            const TextField(decoration: InputDecoration(labelText: 'Mazeret Nedeni', border: OutlineInputBorder())),
-            const SizedBox(height: 10),
-            ElevatedButton(onPressed: () {}, child: const Text('Dosya/Rapor Fotoğrafı Ekle')),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF005EA6)),
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Mazeret Talebiniz İletildi!'), backgroundColor: Colors.green));
-                Navigator.pop(context);
-              },
-              child: const Text('Talebi Gönder', style: TextStyle(color: Colors.white)),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class ChatScreen extends StatelessWidget {
-  const ChatScreen({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Yetkili İletişim Merkezi'), backgroundColor: const Color(0xFF005EA6), iconTheme: const IconThemeData(color: Colors.white)),
-      body: Column(
-        children: [
-          Expanded(child: ListView(children: const [ListTile(title: Text('Yönetici:'), subtitle: Text('Lütfen iş durumunuzu güncel tutun.'))])),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                const Expanded(child: TextField(decoration: InputDecoration(hintText: 'Mesajınızı yazın...', border: OutlineInputBorder()))),
-                IconButton(icon: const Icon(Icons.send, color: Color(0xFF005EA6)), onPressed: () {})
-              ],
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class TasksScreen extends StatelessWidget {
-  const TasksScreen({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Görev Listesi'), backgroundColor: const Color(0xFF005EA6), iconTheme: const IconThemeData(color: Colors.white)),
-      body: ListView(
-        padding: const EdgeInsets.all(8),
-        children: const [
-          Card(child: ListTile(title: Text('Haftalık Görev: Saha Kontrolü'), subtitle: Text('Sincan Merkez Bölgesi Taraması'), trailing: Text('Bekliyor', style: TextStyle(color: Colors.orange)))),
-          Card(child: ListTile(title: Text('Günlük Görev: Raporlama'), subtitle: Text('Akşam mesai bitimi evrak teslimi'), trailing: Text('Tamamlandı', style: TextStyle(color: Colors.green))))
-        ],
-      ),
-    );
-  }
-}
-
-// 🏛️ SADECE SİZİN GÖRECEĞİNİZ CANLI YÖNETİCİ TAKİP EKRANI (ADMIN PANEL)
 class AdminPanelScreen extends StatelessWidget {
   const AdminPanelScreen({super.key});
 
@@ -230,3 +124,30 @@ class AdminPanelScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('SÜPER ADMİN TAKİP PANELİ', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
         backgroundColor: const Color(0xFF005EA6),
+      ),
+      body: ListView(
+        padding: const EdgeInsets.all(12),
+        children: [
+          const Text('Canlı Personel Durumları (30 Personel)', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF005EA6))),
+          const SizedBox(height: 10),
+          _buildLiveCard('Serkan Tekbaş', 'İşe Başladı (08:30)', 'Sincan Merkez Parkı', Colors.green),
+          _buildLiveCard('Fatih Ceylan', 'Mazeret İzni İstiyor', 'Rapor Belgesi Eklendi', Colors.orange),
+          _buildLiveCard('Muhammet Duran', 'İş Bitiş (17:00)', 'Belediye Ek Bina', Colors.red),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildLiveCard(String name, String status, String location, Color color) {
+    return Card(
+      elevation: 3,
+      child: ListTile(
+        leading: CircleAvatar(backgroundColor: color, child: const Icon(Icons.person, color: Colors.white)),
+        title: Text(name, style: const TextStyle(fontWeight: FontWeight.bold)),
+        subtitle: Text('$status\nKonum: $location'),
+        isThreeLine: true,
+        trailing: const Icon(Icons.map, color: Color(0xFF005EA6)),
+      ),
+    );
+  }
+}
